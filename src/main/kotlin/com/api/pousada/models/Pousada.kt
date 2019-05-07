@@ -21,7 +21,7 @@ class Pousada (nameParam: String, classificationParam: Int, nbRoomsParam: Int) {
 
     @Column (name = "NUMERO_QUARTOS")
     var nbRooms: Int = nbRoomsParam
-    
+
     fun checkIn(nbGuests : Int) {
         if (this.nbFreeRooms >= nbGuests){
             this.nbFreeRooms -= nbGuests

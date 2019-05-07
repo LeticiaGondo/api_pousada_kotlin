@@ -1,5 +1,6 @@
 package com.api.pousada.controllers
 
+import com.api.pousada.models.CheckIn
 import com.api.pousada.models.Pousada
 import com.api.pousada.repository.PousadaRepository
 import org.springframework.web.bind.annotation.*
@@ -34,4 +35,12 @@ class PousadaController (val pousadaRepository: PousadaRepository) {
     fun deleteById (@PathVariable("id") id : Long){
         pousadaRepository.deleteById(id)
     }
+
+    @PostMapping ("/checkIn")
+    fun checkIn(@RequestBody checkIn: CheckIn) {
+        var pousada = pousadaRepository.findById(checkIn.pousadaId).get()
+        pousada.checkIn(checkIn.nbGuest)
+        pousadaRepository.save(pousada)
+    }
 }
+
